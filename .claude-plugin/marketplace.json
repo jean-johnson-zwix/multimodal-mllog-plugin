@@ -1,16 +1,16 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "multimodal-mllog-plugin",
-  "description": "Automatic experiment logging for ML coding sessions. Captures metrics, git state, and conversation transcripts as JSON records. Generate logbooks on demand.",
+  "name": "ml-plugins",
+  "description": "ML experiment tooling plugins for AI coding agents.",
   "owner": {
     "name": "Jean Johnson",
     "url": "https://github.com/jean-johnson-zwix"
   },
   "plugins": [
     {
-      "name": "multimodal-mllog-plugin",
+      "name": "mllog",
       "description": "Auto-captures ML experiment runs via SessionStart/Stop hooks. Provides /mllog (manual capture) and /logbook (report generation) commands.",
-      "source": "./",
+      "source": "./mllog/",
       "category": "productivity"
     }
   ]
