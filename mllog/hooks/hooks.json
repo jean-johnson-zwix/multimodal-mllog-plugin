@@ -5,8 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "\"$CLAUDE_PROJECT_ROOT/.venv/bin/mllog\" start-session 2>/dev/null; exit 0",
-            "commandWindows": "& \"$env:CLAUDE_PROJECT_ROOT\\.venv\\Scripts\\mllog.exe\" start-session 2>$null; exit 0",
+            "command": "MLLOG=\"$(pwd)/.venv/bin/mllog\"; [ -f \"$MLLOG\" ] || MLLOG=\"$(pwd)/.venv/Scripts/mllog.exe\"; [ -f \"$MLLOG\" ] && \"$MLLOG\" start-session 2>/dev/null; exit 0",
             "timeout": 10,
             "statusMessage": "mllog: starting session..."
           }
@@ -18,8 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/stop-hook.sh\"; exit 0",
-            "commandWindows": "powershell -ExecutionPolicy Bypass -File \"$env:CLAUDE_PLUGIN_ROOT\\hooks\\stop-hook.ps1\"; exit 0",
+            "command": "MLLOG=\"$(pwd)/.venv/bin/mllog\"; [ -f \"$MLLOG\" ] || MLLOG=\"$(pwd)/.venv/Scripts/mllog.exe\"; [ -f \"$MLLOG\" ] || exit 0; INPUT=$(cat); TRANSCRIPT=$(echo \"$INPUT\" | python3 -c \"import sys,json; print(json.load(sys.stdin).get('transcript_path',''))\" 2>/dev/null || true); ARGS=(capture --type analysis --outcome success --auto); [ -n \"$TRANSCRIPT\" ] && [ -f \"$TRANSCRIPT\" ] && ARGS+=(--transcript \"$TRANSCRIPT\"); \"$MLLOG\" \"${ARGS[@]}\" 2>/dev/null; exit 0",
             "timeout": 15,
             "statusMessage": "mllog: capturing run..."
           }
