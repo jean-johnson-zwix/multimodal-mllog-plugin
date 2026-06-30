@@ -1,4 +1,4 @@
-# mllog — Claude Code Plugin
+# multimodal-mllog-plugin — Claude Code Plugin
 
 Automatic experiment logging for ML coding sessions.
 
@@ -20,7 +20,7 @@ The `mllog` CLI must be on PATH (installed via pip in your project's venv).
 ## Install the plugin
 
 ```
-/plugins add jean-johnson-zwix/multimodal-mllog
+/plugins add jean-johnson-zwix/multimodal-mllog-plugin
 ```
 
 Or add to your Claude Code settings:
