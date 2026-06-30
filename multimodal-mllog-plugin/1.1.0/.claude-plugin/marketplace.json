@@ -8,7 +8,7 @@
   },
   "plugins": [
     {
-      "name": "mllog",
+      "name": "multimodal-mllog-plugin",
       "description": "Auto-captures ML experiment runs via SessionStart/Stop hooks. Provides /mllog (manual capture) and /logbook (report generation) commands.",
       "source": "./",
       "category": "productivity"
