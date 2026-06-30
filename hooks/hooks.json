@@ -1,0 +1,30 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "mllog start-session 2>/dev/null; exit 0",
+            "commandWindows": "mllog start-session 2>$null; exit 0",
+            "timeout": 10,
+            "statusMessage": "mllog: starting session..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PLUGIN_ROOT}/hooks/stop-hook.sh\"; exit 0",
+            "commandWindows": "powershell -ExecutionPolicy Bypass -File \"$env:CLAUDE_PLUGIN_ROOT\\hooks\\stop-hook.ps1\"; exit 0",
+            "timeout": 15,
+            "statusMessage": "mllog: capturing run..."
+          }
+        ]
+      }
+    ]
+  }
+}
