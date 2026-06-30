@@ -1,4 +1,7 @@
 # mllog Stop hook (Windows): reads transcript_path from Claude Code stdin, passes to mllog capture.
+$mllog = "$env:CLAUDE_PROJECT_ROOT\.venv\Scripts\mllog.exe"
+if (-not (Test-Path $mllog)) { exit 0 }
+
 $input = [Console]::In.ReadToEnd()
 $transcriptPath = ""
 try {
@@ -6,10 +9,10 @@ try {
     $transcriptPath = $data.transcript_path
 } catch {}
 
-$args = @("capture", "--type", "analysis", "--outcome", "success", "--auto")
+$captureArgs = @("capture", "--type", "analysis", "--outcome", "success", "--auto")
 if ($transcriptPath -and (Test-Path $transcriptPath)) {
-    $args += @("--transcript", $transcriptPath)
+    $captureArgs += @("--transcript", $transcriptPath)
 }
 
-& mllog @args 2>$null
+& $mllog @captureArgs 2>$null
 exit 0
